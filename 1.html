@@ -39,6 +39,7 @@
   </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 </head>
 
@@ -107,12 +108,12 @@
                 </div>
               </div>
               <div class="col-3">
-                <button type="button" class="btn btn-primary">검색</button>
+                <button type="button" class="btn btn-primary" id="search" onclick="findAddr()">검색</button>
               </div>
             </div>
 
  
-              <input type="postcode" class="form-control" id="postcode" required readonly>
+              <input type="postcode" class="form-control" id="address" required readonly>
               <div class="invalid-feedback">
                 우편번호를 입력해주세요.
               </div>
@@ -165,9 +166,6 @@
   </div>
   <script>
 
-  
-
-
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
 
@@ -182,6 +180,34 @@
         }, false);
       });
     }, false);
+
+    //http://www.b1ix.net/413
+    //https://dw3232.tistory.com/9
+    //https://tyrannocoding.tistory.com/48
+    function findAddr(){
+      new daum.Postcode({
+        oncomplete: function(data) {
+          var addr = '';
+          var roadAddr = data.roadAddrss; //도로명주소 변수
+          var jibunAddr = data.jibunAddress; //지번주소 변수
+
+          document.getElementById("postcode").value = data.zonecode;
+
+          if(roadAddr !== ''){
+            document.getElementById("address").value = roadAddr;
+          }
+          else if(jibunAddr !== ''){
+            document.getElementById("address").value = jibunAddr;
+          }
+          
+          
+          //커서를 상세주소필드로 이동
+          document.getElementById("more_address").focus();
+        }
+      }).open();
+    }
+
+
 
     $(document).ready(function(){
       var now = new Date();
