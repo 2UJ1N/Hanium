@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-in</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
+
+    .input-form {
+      max-width: 680px;
+
+      margin-top: 80px;
+      padding: 32px;
+
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">Sign-in</h4>
+        <form class="validation-form" novalidate>
+      
+          <div class="mb-3">
+            <label for="email">이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name">비밀번호</label>
+              <input type="text" class="form-control" id="password" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                비밀번호를 입력해주세요.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="name">비밀번호 확인</label>
+              <input type="text" class="form-control" id="password" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                비밀번호가 일치하지 않습니다.
+              </div>
+            </div>
+          </div>
+
+          <hr class="mb-4">
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name">이름</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                이름을 입력해주세요.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="gender">성별</label>
+              <br>
+              <input type="radio" name="chk_gender" value="남성">남성
+              <input type="radio" name="chk_gender" value="여성">여성
+              <div class="invalid-feedback">
+                성별을 입력해주세요.
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="root">주소</label>
+            <select class="custom-select d-block w-100" id="root">
+              <option value=""></option>
+              <option>서울특별시</option>
+              <option>부산광역시</option>
+              <option>대구광역시</option>
+              <option>인천광역시</option>
+              <option>광주광역시</option>
+              <option>대전광역시</option>
+              <option>울산광역시</option>
+              <option>세종특별자치시</option>
+              <option>경기도</option>
+              <option>강원도</option>
+              <option>충청북도</option>
+              <option>충청남도</option>
+              <option>전라북도</option>
+              <option>전라남도</option>
+              <option>경상북도</option>
+              <option>경상남도</option>
+              <option>제주특별자치도</option>
+              <option>국외</option>
+            </select>
+            <div class="invalid-feedback">
+              주소를 선택해주세요.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="birth">생년월일</label>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <label for="birth">년</label>
+              <select class="custom-select d-block w-100" id="year" name="yy">
+                <option value=""></option>
+                <option>1980</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label for="birth">월</label>
+              <select class="custom-select d-block w-100" id="month" name="mm">
+                <option value=""></option>
+                <option>01</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label for="birth">일</label>
+              <select class="custom-select d-block w-100" id="day" name="dd">
+                <option value=""></option>
+                <option>01</option>
+              </select>
+            </div>
+          </div>
+
+          <hr class="mb-4">
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+    <footer class="my-3 text-center text-small">
+      <p class="mb-1">&copy; Hanium</p>
+    </footer>
+  </div>
+  <script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+
+    $(document).ready(function(){
+      var now = new Date();
+      var year = now.getFullFullYear();
+    var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+    var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());           
+    //년도 selectbox만들기               
+    for(var i = 1900 ; i <= year ; i++) {
+        $('#year').append('<option value="' + i + '">' + i + '년</option>');    
+    }
+
+    // 월별 selectbox 만들기            
+    for(var i=1; i <= 12; i++) {
+        var mm = i > 9 ? i : "0"+i ;            
+        $('#month').append('<option value="' + mm + '">' + mm + '월</option>');    
+    }
+    
+    // 일별 selectbox 만들기
+    for(var i=1; i <= 31; i++) {
+        var dd = i > 9 ? i : "0"+i ;            
+        $('#day').append('<option value="' + dd + '">' + dd+ '일</option>');    
+    }
+    $("#year  > option[value="+year+"]").attr("selected", "true");        
+    $("#month  > option[value="+mon+"]").attr("selected", "true");    
+    $("#day  > option[value="+day+"]").attr("selected", "true");       
+  
+})
+
+  </script>
+</body>
+
+</html>
