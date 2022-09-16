@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>Sign-in</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    body {
+      min-height: 100vh;
+
+      background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #92b5db 0%, #1d466c 100%);
+    }
+
+    .input-form {
+      max-width: 680px;
+
+      margin-top: 80px;
+      padding: 32px;
+
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+    }
+
+    .formstyle-none {
+      border-color: #ced4da !important;
+      background-image: none !important;
+    }
+
+    .gender-group {margin-top: 7px; }
+
+    .was-validated .gender-group input:invalid ~ .invalid-feedback {
+      display: block;
+    }
+
+    #address {margin: 5px 0; }
+    #more_address {margin-top: 10px; }
+
+    .warning-text {
+      width: 100%;
+      margin-top: .25rem;
+      font-size: 80%;
+      color: #dc3545;
+    }
+
+    .label-required::after {content: "*"; margin-left: 5px; color: #dc3545; }
+
+  </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">Sign-in</h4>
+        <form class="validation-form" novalidate>
+      
+          <div class="mb-3">
+            <label for="email" class="label-required">이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name" class="label-required">비밀번호</label>
+              <input type="password" class="form-control" id="password" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$" required>
+              <!--<div class="invalid-feedback">
+                비밀번호를 입력해주세요.
+              </div>-->
+              <p class="warning-text" id="pwchk01"></p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="name" class="label-required">비밀번호 확인</label>
+              <input type="password" class="form-control" id="passwordCheck" minlength="8" maxlength="20" pattern="^(?=.*[a-z])(?=.*[0-9]).{8,20}$"  required>
+              <!--<div class="invalid-feedback">
+                비밀번호가 일치하지 않습니다.
+              </div>-->
+              <p class="warning-text" id="pwchk02"></p>
+            </div>
+          </div>
+
+          <hr class="mb-4">
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="name" class="label-required">이름</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <div class="invalid-feedback">
+                이름을 입력해주세요.
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="gender" class="label-required">성별</label>
+              <div class="gender-group">
+                <div class="custom-control custom-control-inline custom-radio">
+                  <input type="radio" name="chk_gender" class="custom-control-input" value="남성" id="male" required>
+                  <label for="male" class="custom-control-label">남성</label>
+                </div>
+                <div class="custom-control custom-control-inline custom-radio">
+                  <input type="radio" name="chk_gender" class="custom-control-input" value="여성" id="female" required>
+                  <label for="female" class="custom-control-label">여성</label>
+                </div>
+              </div>  
+              <div class="invalid-feedback">
+                성별을 입력해주세요.
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="mb-3">
+            <label for="root">주소</label>
+            
+            <div class="row">
+              <div class="col-4">
+                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
+                <div class="invalid-feedback">
+                  우편번호를 검색해주세요.
+                </div>
+              </div>
+              <div class="col-3">
+                <button type="button" class="btn btn-primary" id="search" onclick="findAddr()">검색</button>
+              </div>
+            </div>
+
+ 
+              <input type="postcode" class="form-control" id="address" required readonly>
+              <div class="invalid-feedback">
+                우편번호를 입력해주세요.
+              </div>
+              <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력">
+            
+            
+          </div>
+
+          <div class="mb-3">
+            <label for="birth" class="label-required">생년월일</label>
+            <div class="row">
+              <div class="col-4">
+                <select class="custom-select d-block w-100" id="year" name="yy" required>
+                  <option value=""> 년 </option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select class="custom-select d-block w-100" id="month" name="mm" required>
+                  <option value=""> 월 </option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select class="custom-select d-bloc w-100" id="day" name="dd" required>
+                  <option value=""> 일 </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <hr class="mb-4">
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+    <footer class="my-3 text-center text-small">
+      <p class="mb-1">&copy; Hanium</p>
+    </footer>
+  </div>
+  <script>
+
+    // submit 전 모든 값 입력하기
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
+
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+
+    //비밀번호 유효성 검사
+    document.getElementById('password').onkeyup=function(){
+      var pw = this.value;
+      var num = pw.search(/[0-9]/g);
+      var eng = pw.search(/[a-z]/ig);
+
+      if(pw.length < 8 || pw.length > 20){
+        document.getElementById('pwchk01').innerHTML = '비밀번호는 8자리에서 20자리 사이로 입력해주세요';
+        event.preventDefault();
+        event.stopPropagation();
+      } else if(pw.search(/\s/) != -1){
+        document.getElementById('pwchk01').innerHTML = '비밀번호는 공백없이 입력해주세요';
+        event.preventDefault();
+        event.stopPropagation();
+      } else if(num < 0 || eng < 0){
+        document.getElementById('pwchk01').innerHTML = '비밀번호는 영문(소문자), 숫자를 혼합하여 입력해주세요';
+        event.preventDefault();
+        event.stopPropagation();
+      } else{
+        document.getElementById('pwchk01').innerHTML = '';
+      }
+    }
+
+    //비밀번호 일치 확인
+    document.getElementById('passwordCheck').onkeyup=function(){
+      var pww = document.getElementById('password').value;
+      var pwck = this.value;
+
+      if(pww != pwck){
+        document.getElementById('pwchk02').innerHTML = '비밀번호가 일치하지 않습니다';
+        event.preventDefault();
+        event.stopPropagation();
+      } else{ 
+        document.getElementById('pwchk02').innerHTML = '';
+      }
+    }
+
+
+    //주소 불러오기 - daum api 활용
+    function findAddr(){
+      new daum.Postcode({
+        oncomplete: function(data) {
+          var addr = '';
+          var roadAddr = data.roadAddress; //도로명주소 변수
+          var jibunAddr = data.jibunAddress; //지번주소 변수
+
+          document.getElementById("postcode").value = data.zonecode;
+
+          if(roadAddr !== ''){
+            document.getElementById("address").value = roadAddr;
+          }
+          else if(jibunAddr !== ''){
+            document.getElementById("address").value = jibunAddr;
+          }
+
+          //커서를 상세주소필드로 이동
+          document.getElementById("more_address").focus();
+        }
+      }).open();
+    }
+
+    //selectbox 생년월일 생성
+    $(document).ready(function(){
+        var now = new Date();
+        var year = now.getFullYear();
+        var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+        var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());       
+
+        //년도 selectbox만들기               
+        for(var i = 1900 ; i <= year ; i++) {
+            $('#year').append('<option value="' + i + '">' + i + '년</option>');    
+        }
+
+        // 월별 selectbox 만들기            
+        for(var i=1; i <= 12; i++) {
+            var mm = i > 9 ? i : "0"+i ;            
+            $('#month').append('<option value="' + mm + '">' + mm + '월</option>');    
+        }
+        
+        // 일별 selectbox 만들기
+        for(var i=1; i <= 31; i++) {
+            var dd = i > 9 ? i : "0"+i ;            
+            $('#day').append('<option value="' + dd + '">' + dd+ '일</option>');    
+        }
+
+        if($('#year > option').val() == '') {
+
+        }
+
+        // $("#year  > option[value="+year+"]").attr("selected", "true");        
+        // $("#month  > option[value="+mon+"]").attr("selected", "true");    
+        // $("#day  > option[value="+day+"]").attr("selected", "true");       
+      
+    });
+
+  </script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+</body>
+
+</html>
