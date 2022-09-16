@@ -36,6 +36,16 @@
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+
+    .formstyle-none {
+      border-color: #ced4da !important;
+      background-image: none !important;
+    }
+
+    .was-validated .gender-group input:invalid ~ .invalid-feedback {
+      display: block;
+    }
+
   </style>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -84,11 +94,11 @@
                 이름을 입력해주세요.
               </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-6 mb-3 gender-group">
               <label for="gender">성별</label>
               <br>
-              <input type="radio" name="chk_gender" value="남성">남성
-              <input type="radio" name="chk_gender" value="여성">여성
+              <input type="radio" name="chk_gender" value="남성" id="male" required> <label for="male">남성</label>
+              <input type="radio" name="chk_gender" value="여성" id="female" required> <label for="female">여성</label>
               <div class="invalid-feedback">
                 성별을 입력해주세요.
               </div>
@@ -101,7 +111,7 @@
             
             <div class="row">
               <div class="col-4">
-                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" required>
+                <input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호 검색" readonly required>
                 <div class="invalid-feedback">
                   우편번호를 검색해주세요.
                 </div>
@@ -116,7 +126,7 @@
               <div class="invalid-feedback">
                 우편번호를 입력해주세요.
               </div>
-              <input type="text" class="form-control" id="more_address" placeholder="상세주소 입력">
+              <input type="text" class="form-control formstyle-none" id="more_address" placeholder="상세주소 입력">
             
             
           </div>
@@ -127,23 +137,20 @@
           <div class="row">
             <div class="col-4">
               <label for="birth">년</label>
-              <select class="custom-select d-block w-100" id="year" name="yy">
-                <option value=""></option>
-                <option>1980</option>
+              <select class="custom-select d-block w-100" id="year" name="yy" required>
+                <option value="">=== 선택 ===</option>
               </select>
             </div>
             <div class="col-4">
               <label for="birth">월</label>
-              <select class="custom-select d-block w-100" id="month" name="mm">
-                <option value=""></option>
-                <option>01</option>
+              <select class="custom-select d-block w-100" id="month" name="mm" required>
+                <option value="">=== 선택 ===</option>
               </select>
             </div>
             <div class="col-4">
               <label for="birth">일</label>
-              <select class="custom-select d-block w-100" id="day" name="dd">
-                <option value=""></option>
-                <option>01</option>
+              <select class="custom-select d-block w-100" id="day" name="dd" required>
+                <option value="">=== 선택 ===</option>
               </select>
             </div>
           </div>
@@ -164,7 +171,7 @@
     </footer>
   </div>
   <script>
-
+    // submit 전 모든 값 입력하기
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
 
@@ -179,6 +186,11 @@
         }, false);
       });
     }, false);
+
+    //비밀번호 유효성 검사
+
+    //비밀번호 일치 확인
+
 
     //주소 불러오기 - daum api 활용
     function findAddr(){
@@ -204,11 +216,10 @@
       }).open();
     }
 
-
-
+    //selectbox 생년월일 생성
     $(document).ready(function(){
         var now = new Date();
-        var year = now.getFullFullYear();
+        var year = now.getFullYear();
         var mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
         var day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate());       
 
@@ -229,9 +240,13 @@
             $('#day').append('<option value="' + dd + '">' + dd+ '일</option>');    
         }
 
-        $("#year  > option[value="+year+"]").attr("selected", "true");        
-        $("#month  > option[value="+mon+"]").attr("selected", "true");    
-        $("#day  > option[value="+day+"]").attr("selected", "true");       
+        if($('#year > option').val() == '') {
+
+        }
+
+        // $("#year  > option[value="+year+"]").attr("selected", "true");        
+        // $("#month  > option[value="+mon+"]").attr("selected", "true");    
+        // $("#day  > option[value="+day+"]").attr("selected", "true");       
       
     });
 
