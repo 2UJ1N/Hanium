@@ -43,9 +43,14 @@
       background-image: none !important;
     }
 
+    .gender-group {margin-top: 7px; }
+
     .was-validated .gender-group input:invalid ~ .invalid-feedback {
       display: block;
     }
+
+    #address {margin: 5px 0; }
+    #more_address {margin-top: 10px; }
 
   </style>
 
@@ -95,11 +100,18 @@
                 이름을 입력해주세요.
               </div>
             </div>
-            <div class="col-md-6 mb-3 gender-group">
+            <div class="col-md-6 mb-3">
               <label for="gender">성별</label>
-              <br>
-              <input type="radio" name="chk_gender" value="남성" id="male" required> <label for="male">남성</label>
-              <input type="radio" name="chk_gender" value="여성" id="female" required> <label for="female">여성</label>
+              <div class="gender-group">
+                <div class="custom-control custom-control-inline custom-radio">
+                  <input type="radio" name="chk_gender" class="custom-control-input" value="남성" id="male" required>
+                  <label for="male" class="custom-control-label">남성</label>
+                </div>
+                <div class="custom-control custom-control-inline custom-radio">
+                  <input type="radio" name="chk_gender" class="custom-control-input" value="여성" id="female" required>
+                  <label for="female" class="custom-control-label">여성</label>
+                </div>
+              </div>  
               <div class="invalid-feedback">
                 성별을 입력해주세요.
               </div>
@@ -134,25 +146,25 @@
 
           <div class="mb-3">
             <label for="birth">생년월일</label>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <label for="birth">년</label>
-              <select class="custom-select d-block w-100" id="year" name="yy" required>
-                <option value="">=== 선택 ===</option>
-              </select>
-            </div>
-            <div class="col-4">
-              <label for="birth">월</label>
-              <select class="custom-select d-block w-100" id="month" name="mm" required>
-                <option value="">=== 선택 ===</option>
-              </select>
-            </div>
-            <div class="col-4">
-              <label for="birth">일</label>
-              <select class="custom-select d-block w-100" id="day" name="dd" required>
-                <option value="">=== 선택 ===</option>
-              </select>
+            <div class="row">
+              <div class="col-4">
+                <label for="birth">년</label>
+                <select class="custom-select d-block w-100" id="year" name="yy" required>
+                  <option value="">=== 선택 ===</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <label for="birth">월</label>
+                <select class="custom-select d-block w-100" id="month" name="mm" required>
+                  <option value="">=== 선택 ===</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <label for="birth">일</label>
+                <select class="custom-select d-block w-100" id="day" name="dd" required>
+                  <option value="">=== 선택 ===</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -209,8 +221,6 @@
           else if(jibunAddr !== ''){
             document.getElementById("address").value = jibunAddr;
           }
-          
-          document.getElementById("postcode").readOnly = false;
 
           //커서를 상세주소필드로 이동
           document.getElementById("more_address").focus();
