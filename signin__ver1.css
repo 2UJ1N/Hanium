@@ -30,14 +30,21 @@ body {
   background-image: none !important;
 }
 
-.gender-group {margin-top: 7px; }
+.gender-group {
+  margin-top: 7px;
+}
 
-.was-validated .gender-group input:invalid ~ .invalid-feedback {
+.was-validated .gender-group input:invalid~.invalid-feedback {
   display: block;
 }
 
-#address {margin: 5px 0; }
-#more_address {margin-top: 10px; }
+#address {
+  margin: 5px 0;
+}
+
+#more_address {
+  margin-top: 10px;
+}
 
 .warning-text {
   width: 100%;
@@ -46,4 +53,8 @@ body {
   color: #dc3545;
 }
 
-.label-required::after {content: "*"; margin-left: 5px; color: #dc3545; }
+.label-required::after {
+  content: "*";
+  margin-left: 5px;
+  color: #dc3545;
+}
