@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+    min-height: 100vh;
+    background: #fff;
+  }
+
+  .input-form {
+    max-width: 680px;
+    margin-top: 80px;
+    padding: 32px;
+    background: #fff;
+  }
+
+  .signin-title {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .formstyle-none {
+    border-color: #ced4da !important;
+    background-image: none !important;
+  }
+
+  .gender-group {
+    margin-top: 7px;
+  }
+
+  .was-validated .gender-group input:invalid~.invalid-feedback {
+    display: block;
+  }
+
+  #address {
+    margin: 5px 0;
+  }
+
+  #more_address {
+    margin-top: 10px;
+  }
+
+  .warning-text {
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+  }
+
+  .label-required::after {
+    content: "*";
+    margin-left: 5px;
+    color: #dc3545;
+  }
