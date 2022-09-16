@@ -180,11 +180,12 @@
       });
     }, false);
 
+    //주소 불러오기 - daum api 활용
     function findAddr(){
       new daum.Postcode({
         oncomplete: function(data) {
           var addr = '';
-          var roadAddr = data.roadAddrss; //도로명주소 변수
+          var roadAddr = data.roadAddress; //도로명주소 변수
           var jibunAddr = data.jibunAddress; //지번주소 변수
 
           document.getElementById("postcode").value = data.zonecode;
